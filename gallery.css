@@ -1,0 +1,80 @@
+html, body {   
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow-y: auto;
+    font-family: sans-serif;
+}
+
+.Container {
+    padding: 20px;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+.top_menu {
+    position: relative;
+    z-index: 10;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: #333;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+}
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 20px;
+}
+
+/* Each image box */
+.image-box {
+    flex: 1 1 calc(33.333% - 30px); /* Create a 3-column layout */
+    max-width: calc(33.333% - 30px); /* Restrict the width */
+    border: 2px solid #ccc;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    box-sizing: border-box;
+}
+
+/* Ensure images fit within their boxes */
+.image-box img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover; /* Ensure image fills the box without distortion */
+}
+
+/* Responsive Design for smaller screens */
+@media (max-width: 768px) {
+    .image-box {
+        flex: 1 1 calc(50% - 20px); /* Switch to 2-column layout for tablet */
+        max-width: calc(50% - 20px);
+    }
+}
+
+@media (max-width: 480px) {
+    .image-box {
+        flex: 1 1 100%; /* Switch to 1-column layout for mobile */
+        max-width: 100%;
+    }
+}
