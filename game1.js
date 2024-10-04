@@ -35,15 +35,25 @@ function drawLine() {
 
 function drawTopBoxes() {
     const numberOfBoxes = 5; // Number of boxes to draw
-    const boxSpacing = 10; // Spacing between boxes
+    const boxSpacing_x = 10; // Spacing between boxes
     const y = 10;
     const leftMargin = 38;
-
-    for (let i = 0; i < numberOfBoxes; i++) {
-        const x = leftMargin + i * (boxWidth + boxSpacing); // Calculate x-position for each box
-        ctx.fillStyle = 'blue'; // Color of the top boxes
-        ctx.fillRect(x, y, boxWidth-10, boxHeight); // Draw the box
+    const Number_drawn = 0;
+    while(numberOfBoxes != 0){
+        if(Number_drawn < 5){
+            for (let i = 0; i < numberOfBoxes; i++) {
+                const x = leftMargin + i * (boxWidth + boxSpacing_x); // Calculate x-position for each box
+                ctx.fillStyle = 'blue'; // Color of the top boxes
+                ctx.fillRect(x, y, boxWidth-10, boxHeight); // Draw the box
+            }
+            Number_drawn += 1;
+        }
+        else{
+            Number_drawn = 0;
+        }
+        
     }
+    
 }
 
 function drawBox(x) {

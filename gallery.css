@@ -28,7 +28,9 @@ ul {
 li {
     float: left;
 }
-
+li a:hover, .dropdown:hover .dropbtn{
+    background: #b2d31d;
+}
 li a {
     display: inline-block;
     color: white;
@@ -47,26 +49,27 @@ li a {
 
 /* Each image box */
 .image-box {
-    flex: 1 1 calc(33.333% - 30px); /* Create a 3-column layout */
+    flex: 1 1 calc(33.333% - 30px); /* 3-column layout */
     max-width: calc(33.333% - 30px); /* Restrict the width */
     border: 2px solid #ccc;
     padding: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     background-color: #fff;
     box-sizing: border-box;
-    display: flex; /* Make the image box a flex container */
-    justify-content: center; /* Center the image horizontally */
-    align-items: center; /* Center the image vertically */
-    height: 200px; /* Set a fixed height for uniformity */
+    display: flex;
+    justify-content: center; /* Center image horizontally */
+    align-items: center; /* Center image vertically */
+    height: 300px; /* Increase height to better fit portrait images */
 }
 
-/* Ensure images fit within their boxes */
 .image-box img {
-    max-width: 100%;
-    max-height: 100%;
-    display: block;
-    object-fit: contain; 
+    max-height: 100%; /* Allow the image to fit the box’s height */
+    max-width: auto; /* Adjust width proportionally */
+    height: auto;
+    width: auto;
+    object-fit: contain; /* Ensure the image fits without distortion */
 }
+
 
 /* Responsive Design for smaller screens */
 @media (max-width: 768px) {
