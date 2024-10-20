@@ -1,112 +1,57 @@
-const canvas = document.getElementById('gamebox');
+const canvas = document.getElementById('gameCanvas');
+const button = document.getElementById('start');
 const ctx = canvas.getContext('2d');
 
-// Player Box information
-let X_box = (canvas.width - 100) / 2; // Center the box at the start
-const boxWidth = 100;
-const boxHeight = 20;
-const boxSpeed = 4;
-
-let moveLeft = false; // Flag to track left movement
-let moveRight = false; // Flag to track right movement
-
-function drawLine() {
-    const gridSpacing = 10;
-
-    ctx.strokeStyle = '#add';
-    ctx.lineWidth = 1;
-
-    // Draw vertical lines (y-axis lines)
-    for (let x = 0; x <= canvas.width; x += gridSpacing) {
-        ctx.beginPath();
-        ctx.moveTo(x, 0);
-        ctx.lineTo(x, canvas.height);
-        ctx.stroke();
-    }
-
-    // Draw horizontal lines (x-axis lines)
-    for (let y = 0; y <= canvas.height; y += gridSpacing) {
-        ctx.beginPath();
-        ctx.moveTo(0, y);
-        ctx.lineTo(canvas.width, y);
-        ctx.stroke();
-    }
-}
-
-function drawTopBoxes() {
-    const numberOfBoxes = 5; // Number of boxes to draw
-    const boxSpacing_x = 10; // Spacing between boxes
-    const y = 10;
-    const leftMargin = 38;
-    const Number_drawn = 0;
-    while(numberOfBoxes != 0){
-        if(Number_drawn < 5){
-            for (let i = 0; i < numberOfBoxes; i++) {
-                const x = leftMargin + i * (boxWidth + boxSpacing_x); // Calculate x-position for each box
-                ctx.fillStyle = 'blue'; // Color of the top boxes
-                ctx.fillRect(x, y, boxWidth-10, boxHeight); // Draw the box
-            }
-            Number_drawn += 1;
-        }
-        else{
-            Number_drawn = 0;
-        }
-        
-    }
-    
-}
-
-function drawBox(x) {
-    const y = canvas.height - boxHeight - 10; // Position the box near the bottom
-    ctx.fillStyle = 'grey'; // Set the color of the box
-    ctx.fillRect(x, y, boxWidth, boxHeight); // Draw the box at position (x, y)
-}
-
-function clearCanvas() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the entire canvas
-}
-
-function animateBox() {
-    clearCanvas(); // Clear the canvas before each frame
-    drawLine(); // Redraw the grid lines
-    drawTopBoxes();
-
-    // Update the box's position based on movement flags
-    if (moveRight) {
-        X_box += boxSpeed;
-    }
-    if (moveLeft) {
-        X_box -= boxSpeed;
-    }
-
-    // Ensure the box stays within the canvas boundaries
-    if (X_box < 0) {
-        X_box = 0; // Prevent moving off the left edge
-    } else if (X_box > canvas.width - boxWidth) {
-        X_box = canvas.width - boxWidth; // Prevent moving off the right edge
-    }
-
-    drawBox(X_box); // Draw the box at its current x-position
-    requestAnimationFrame(animateBox); // Continue the animation
-}
-
-// Keyboard event listener to move the box
-document.addEventListener('keydown', (event) => {
-    if (event.key === 'ArrowRight') {
-        moveRight = true; // Start moving right
-    } else if (event.key === 'ArrowLeft') {
-        moveLeft = true; // Start moving left
-    }
+button.addEventListener('click', function() {
+    updateBallPosition();
+    button.disabled = true;
 });
+// Set canvas dimensions
+canvas.width = window.innerWidth - 20;
+canvas.height = window.innerHeight - 20;
 
-// Keyboard event listener to stop moving the box
-document.addEventListener('keyup', (event) => {
-    if (event.key === 'ArrowRight') {
-        moveRight = false; // Stop moving right
-    } else if (event.key === 'ArrowLeft') {
-        moveLeft = false; // Stop moving left
-    }
-});
+// Ball properties
+let ball = {
+  x: canvas.width / 2,
+  y: canvas.height / 2,
+  radius: 20,
+  dx: 5, // Speed in the x direction
+  dy: 5, // Speed in the y direction
+  color: 'orange'
+};
 
-// Start the animation
-animateBox();
+// Function to draw the ball
+function drawBall() {
+  ctx.beginPath();
+  ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+  ctx.fillStyle = ball.color;
+  ctx.fill();
+  ctx.closePath();
+}
+
+// Function to update the ball's position
+function updateBallPosition() {
+  // Clear the canvas
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // Draw the ball
+  drawBall();
+
+  // Move the ball
+  ball.x += ball.dx;
+ 
+
+  // Detect collision with walls and bounce
+  if (ball.x + ball.radius > canvas.width || ball.x - ball.radius < 0) {
+    ball.dx *= -1; // Reverse x direction
+  }
+  if (ball.y + ball.radius > canvas.height || ball.y - ball.radius < 0) {
+    ball.dy *= -1; // Reverse y direction
+  }
+
+  // Request animation frame to keep the ball moving
+  requestAnimationFrame(updateBallPosition);
+}
+
+// Start the game
+
