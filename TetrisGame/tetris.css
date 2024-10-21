@@ -1,0 +1,107 @@
+html, body {   
+
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-y: auto;
+  font-family: sans-serif;
+  background: rgb(39, 37, 37);
+}
+h3{
+  color:white;
+  font-size: 30px;
+  font-family: cursive;
+}
+.tetris-button {
+  background-color: #000000; 
+  border: 5px solid #333;
+  border-radius: 5px; 
+  color: white;
+  font-size: 20px;
+  font-family: 'Press Start 2P', cursive;
+  padding: 10px 20px; 
+  cursor: pointer;
+  text-transform: uppercase; 
+  box-shadow: 3px 3px 0px #333; 
+  transition: transform 0.1s ease; 
+}
+
+.tetris-button:hover {
+  background-color: rgba(81, 153, 63, 0.7);
+}
+
+.tetris-button:active {
+  transform: translate(3px, 3px);
+  box-shadow: none;
+}
+
+.Container {
+  padding: 20px;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.top_menu {
+  position: relative;
+  z-index: 10;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: #333;
+}
+
+li {
+  float: left;
+}
+li a:hover, .dropdown:hover .dropbtn{
+  background: #b2d31d;
+}
+li a {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px 20px;
+  text-decoration: none;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30vh;
+  
+}
+.grid {
+  width: 200px;
+  height: 400px;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: rgb(0, 0, 0);
+}
+
+.grid div {
+  height: 20px;
+  width: 20px;
+}
+
+.tetromino {
+  background-color: blue;
+}
+
+
+.mini-grid {
+  margin-left: 50px;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: black;
+}
+
+.mini-grid div {
+  height: 20px;
+  width: 20px;
+}
