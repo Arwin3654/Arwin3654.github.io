@@ -16,6 +16,12 @@ html, body
     min-height: 100vh;
     box-sizing: border-box;
 }
+.right-menu{
+    float: right;
+}
+.right-menu ul li{
+    margin-left: 15px;
+}
 .top_menu{
     position: relative;
     z-index: 10;
