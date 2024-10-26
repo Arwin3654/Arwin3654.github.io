@@ -22,6 +22,9 @@ html, body
 .right-menu ul li{
     margin-left: 15px;
 }
+.top-right{
+    float: right;
+}
 .top_menu{
     position: relative;
     z-index: 10;
